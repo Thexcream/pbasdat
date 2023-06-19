@@ -13,24 +13,23 @@ return new class extends Migration
     {
         Schema::create('kerjasamas', function (Blueprint $table) {
             $table->id();
-            $table->string("ringkasanmou",1000);
-            $table->string("filemou",200);
-            $table->string("nomormoa",100);
-            $table->string("deskripsimoa",100);
-            $table->string("tglmulaimoa",100);
-            $table->string("tglberakhirmoa",100);
-            $table->string("filemoa",100);
-            $table->string("misiprogram",1000);
-            $table->string("targetprogram",1000);
-            $table->string("alasanmitra",1000);
-            $table->string("prinsipkerjasama",1000);
-            $table->string("manfaatkerjasama",1000);
-            $table->string("tantanganpelaksanaan",1000);
-            $table->string("kepemilikanhakcipta",1000);
-            $table->string("mekanismeresipokal",1000);
-            $table->string("keberlanjutankerjasama",1000);
-            $table->string("hakdankewajiban",1000);
-            $table->enum('haktercantum',['ya','tidak']);
+            $table->string("rpb",1000);
+            $table->string("kp1", 200);
+            $table->string("kp2", 200);
+            $table->string("kp3", 200);
+            $table->string("jeniskerjasama",100);
+            $table->string("jumlahijazah",100);
+            $table->string("nama1",100);
+            $table->string("nama2",100);
+            $table->string("jabatan1",100);
+            $table->string("jabatan2",100);
+            $table->string("kcm",100);
+            $table->string("ps",100);
+            $table->string("sp",100);
+            $table->string("penjadwalan",100);
+            $table->string("skijazah",100);
+            $table->string("ksl",100);
+            $table->enum('studimoa',['ya','tidak']);
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
 <!-- Content Row -->
 <div class="card">
     <div class="card-header">
-        <b>BAB 2. DOKUMEN KERJASAMA</b>
+        <b>BAB 4. RENCANA PELAKSANAAN KERJASAMA</b>
     </div>
     <div class="card-body">
         <div class="row">
@@ -22,273 +22,262 @@
         </div>   
         <br/>
         <div class="alert text-center text-light" style="background-color: #012F8B;" role="alert">
-           <b>MOU & MOA</b>
+           <b>KESIAPAN PELAKSANAAN KERJA SAMA</b>
         </div>
 
         <form action="{{ route('kerjasama.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">RINGKASAN MOU</label>
+                <label class="col-sm-4 col-form-label">RENCANA PELAKSANAAN PEMBELAJARAN<span class="text-danger">*</span></label>
                 <div class="col-sm-8">
                       <div class="mb-3">
-                          <textarea name="ringkasanmou" id="inputRingkasMou" class="form-control" rows="4">{{ old('ringkasanmou') }}</textarea>
+                          <textarea name="rpb" id="inputrpb" class="form-control" rows="4">{{ old('rpb') }}</textarea>
                       </div>
-                      @error('ringkasanmou')
+                      @error('rpb')
                          <span class="text-danger">{{ $message }}</span>
                       @endif
+                      <small class="text-danger">Maks. 1800 karakter</small>
                 </div>
               </div>
               <hr/>                     
   
               <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">UNGGAH FILE MOU</label>
-                  <div class="col-sm-8">
+                <label class="col-sm-4 col-form-label">DESAIN KURIKULUM<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="d-flex flex-row-reverse">
+                        <hr style="height: 1px; background-color: black; margin-left: 0; margin-right: 0;">
+                        <div class="p-2"></div>
                         <div class="mb-3">
-                           <input name="filemou" class="form-control" type="file" id="formFile">
+                            <label class="form-label">Gabungan:</label>
+                            <hr>
+                            <label class="form-label">Kurikulum Prodi</label>
+                            <input name="kp1" class="form-control" type="file" id="formFile">
+                            <small class="text-danger">Maks. 500 KB</small>
                         </div>
-                        @error('filemou')
-                            <span class="text-danger">{{ $message }}</span>
+                        @error('desain')
+                        <span class="text-danger">{{ $message }}</span>
                         @endif
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">NO MOA</label>
-                  <div class="col-sm-8">
+                        <div class="p-2"></div>
                         <div class="mb-3">
+                            <label class="form-label">PT Mitra:</label>
+                            <hr>
+                            <label class="form-label">Kurikulum Prodi</label>
+                            <input name="kp2" class="form-control" type="file" id="formFile">
+                            <small class="text-danger">Maks. 500 KB</small>
+                        </div>
+                        @error('desain')
+                        <span class="text-danger">{{ $message }}</span>
+                        @endif
+                        <div class="p-2"></div>
+                        <div class="mb-3">
+                            <label class="form-label">PT:</label>
+                            <hr>
+                            <label class="form-label">Kurikulum Prodi</label>
+                            <input name="kp3" class="form-control" type="file" id="formFile">
+                            <small class="text-danger">Maks. 500 KB</small>
+                        </div>
+                        @error('desain')
+                        <span class="text-danger">{{ $message }}</span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <hr/>
+  
+            <div class="row mb-3" style="background-color: #98FB98;">
+                <label class="col-sm-4 col-form-label">JENIS KERJA SAMA<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="p-3" >
+                        <select class="form-control" id="inputkerjasama" name="jeniskerjasama">
+                            <option value="Gelar Ganda (Double Degree)" {{ isset($kerjasama) && $kerjasama->jeniskerjasama == 'GelarGanda' ? 'selected' : '' }}>Gelar Ganda (Double Degree)</option>
+                            <option value="S1" {{ isset($kerjasama) && $kerjasama->jeniskerjasama == 'S1' ? 'selected' : '' }}>S1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+  
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">JUMLAH IJAZAH YANG AKAN DITERBITKAN<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <label class="form-label">Ditulis dalam angka (1, 2, ...)</label>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea name="jumlahijazah" class="form-control" id="inputjumlahijazah" style="height: 100px">{{ old('jumlahijazah') }}</textarea>
+                        </div>
+                        @error('jumlahijazah')
+                        <span class="text-danger">{{ $message }}</span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <hr/>
+  
+            <div class="row">
+                <label class="col-sm-4 col-form-label">PENANDATANGANAN IJAZAH<span class="text-danger">*</span></label>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row mb-3">
+                        <div class="col-sm-6 offset-sm-10">
                             <div class="form-floating">
-                              <textarea name="nomormoa" class="form-control"  placeholder="No MOA" id="nomor" style="height: 100px">{{ old('nomormoa') }}</textarea>
-                            </div>
-                            @error('nomormoa')
-                                <span class="text-danger">{{ $message }}</span>
-                            @endif
+                                <label class="form-label">PT:</label>
+                                <hr/>
+                                <label class="form-label">Nama</label>
+                                <textarea name="nama1" class="form-control" id="inputnama" style="height: 100px">{{ old('nama1') }}</textarea>
+                            </div><!-- First box content goes here -->
                         </div>
-                  </div>
-              </div>            
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">DESKRIPSI SINGKAT MOA</label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row mb-3">
+                        <div class="col-sm-6 offset-sm-6">
                             <div class="form-floating">
-                              <textarea name="deskripsimoa" id="inputDeskripsiMou" class="form-control" rows="4">{{ old('deskripsimoa') }}</textarea>
-                            </div>
-                            @error('deskripsimoa')
-                                <span class="text-danger">{{ $message }}</span>
-                            @endif
+                                <label class="form-label">PT Mitra:</label>
+                                <hr/>
+                                <label class="form-label">Nama</label>
+                                <textarea name="nama2" class="form-control" id="inputnama" style="height: 100px">{{ old('nama2') }}</textarea>
+                            </div><!-- Fourth box content goes here -->
                         </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">Tanggal</label>
-                  <div class="col-sm-8">
-                      <div class="d-flex justify-content-center">
-                          <div class="col-md-6">
-                              <label class="form-label">Tanggal Dimulai MOA</label>
-                              <input type="text" name="tglmulaimoa" class="form-control" id="inputEmail4" placeholder="Tanggal dimulai MOA" value="{{ old('tglmulaimoa') }}">
-                              @error('tglmulaimoa')
-                                 <span class="text-danger">{{ $message }}</span>
-                              @endif
-                          </div>
-                          <div class="col-md-6">
-                              <label class="form-label">Tanggal Berakhir MOA</label>
-                              <input type="text" name="tglberakhirmoa" class="form-control" id="inputPassword4" placeholder="Tanggal Berakhir MOA" value="{{ old('tglberakhirmoa') }}">
-                              @error('tglberakhirmoa')
-                                 <span class="text-danger">{{ $message }}</span>
-                              @endif
-                          </div>
-                       </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">UNGGAH FILE MOA</label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                           <input name="filemoa" class="form-control" type="file" id="formFile">
-                            @error('filemoa')
-                                <span class="text-danger">{{ $message }}</span>
-                            @endif
-                        </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">MISI PROGRAM KERJA SAMA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row mb-6">
+                        <div class="col-sm-6 offset-sm-10">
                             <div class="form-floating">
-                              <textarea name="misiprogram" id="misiprogram" class="form-control" rows="4">{{ old('misiprogram') }}</textarea>
-                              @error('misiprogram')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+                                <label class="form-label">Jabatan</label>
+                                <textarea name="jabatan1" class="form-control" id="inputjabatan" style="height: 100px">{{ old('jabatan1') }}</textarea>
+                            </div><!-- Third box content goes here -->
                         </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">TARGET PROGRAM KERJA SAMA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row mb-3">
+                        <div class="col-sm-6 offset-sm-6">
                             <div class="form-floating">
-                              <textarea name="targetprogram" id="targetprogram" class="form-control" rows="4">{{ old('targetprogram') }}</textarea>
-                              @error('targetprogram')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+                                <label class="form-label">Jabatan</label>
+                                <textarea name="jabatan2" class="form-control" id="tandatanganijazah" style="height: 100px">{{ old('jabatan2') }}</textarea>
+                            </div><!-- Fourth box content goes here -->
                         </div>
-                  </div>
-              </div>
-              <hr/>
+                    </div>
+                </div>
+            </div>
+            <hr/>
   
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">ALASAN PEMILIHAN MITRA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="alasanmitra" id="alasanmitra" class="form-control" rows="4">{{ old('alasanmitra') }}</textarea>
-                              @error('alasanmitra')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">KRITERIA CALON MAHASISWA<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea name="kcm" id="inputkcm" class="form-control" rows="4">{{ old('kcm') }}</textarea>
                         </div>
-                  </div>
-              </div>
-              <hr/>
+                        @error('kcm')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <small class="text-danger">Maks. 1800 karakter</small>
+                </div>
+            </div>
+            <hr/>
   
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">PRINSIP KERJA SAMA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="prinsipkerjasama" id="prinsipkerjasama" class="form-control" rows="4">{{ old('prinsipkerjasama') }}</textarea>
-                              @error('prinsipkerjasama')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">PROSES SELEKSI<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea name="ps" id="inputps" class="form-control" rows="4">{{ old('ps') }}</textarea>
+                            @error('ps')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                  </div>
-              </div>
-              <hr/>
+                        <small class="text-danger">Maks. 1800 karakter</small>
+                    </div>
+                </div>
+            </div>
+            <hr/>
   
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">MANFAAT KERJA SAMA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="manfaatkerjasama" id="manfaatkerjasama" class="form-control" rows="4">{{ old('manfaatkerjasama') }}</textarea>
-                              @error('manfaatkerjasama')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">SKEMA PEMBIAYAAN<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea name="sp" id="inputsp" class="form-control" rows="4">{{ old('sp') }}</textarea>
+                            <small class="text-danger">Maks. 1800 karakter</small>
                         </div>
-                  </div>
-              </div>
-              <hr/>
+                    </div>
+                    @error('sp')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <hr/>
   
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">TANTANGAN PLELAKSANAAN KERJA SAMA </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="tantanganpelaksanaan" id="tantanganpelaksanaan" class="form-control" rows="4">{{ old('tantanganpelaksanaan') }}</textarea>
-                              @error('tantanganpelaksanaan')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">PENJADWALAN PROGRAM KERJA SAMA<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <input name="penjadwalan" class="form-control" type="file" id="inputpenjadwalan">
+                        <small class="text-danger">Maks. 2MB</small>
+                    </div>
+                </div>
+            </div>
+            @error('penjadwalan')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+            <hr/>
+  
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">SURAT KETERANGAN PENDAMPING IJAZAH (SKPI)<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <input name="skijazah" class="form-control" type="file" id="inputskijazah">
+                        <small class="text-danger">Maks. 2MB</small>
+                    </div>
+                </div>
+            </div>
+            @error('skijazah')
+            <span class="text-danger">{{ $message }}</span>
+            @endif
+            <hr/>
+  
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">KEBERLANJUTAN UNTUK STUDI LANJUT (DESKRIPSI)<span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea name="ksl" id="inputksl" class="form-control" rows="4">{{ old('ksl') }}</textarea>
+                            @error('ksl')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">KEPEMILIKAN HAK CIPTA DAN ATAU PATEN </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="kepemilikanhakcipta" id="kepemilikanhakcipta" class="form-control" rows="4">{{ old('kepemilikanhakcipta') }}</textarea>
-                              @error('kepemilikanhakcipta')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
-                        </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">MEKANISME RESIPOKAL </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="mekanismeresipokal" id="mekanismeresipokal" class="form-control" rows="4">{{ old('mekanismeresipokal') }}</textarea>
-                              @error('mekanismeresipokal')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
-                        </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">KEBERLANJUTAN KERJA SAMA  </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="keberlanjutankerjasama" id="keberlanjutankerjasama" class="form-control" rows="4">{{ old('keberlanjutankerjasama') }}</textarea>
-                              @error('keberlanjutankerjasama')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
-                        </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">HAK DAN KEWAJIBAN </label>
-                  <div class="col-sm-8">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                              <textarea name="hakdankewajiban" id="hakdankewajiban" class="form-control" rows="4">{{ old('hakdankewajiban') }}</textarea>
-                              @error('hakdankewajiban')
-                                <span class="text-danger">{{ $message }}</span>
-                              @endif
-                            </div>
-                        </div>
-                  </div>
-              </div>
-              <hr/>
-  
-              <div class="row mb-3">
-                  <label class="col-sm-4 col-form-label">HAK TERCANTUM </label>
+                        <small class="text-danger">Maks. 1800 karakter</small>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row mb-3">
+                  <label class="col-sm-4 col-form-label">Studi Lanjut MOA </label>
                   <div class="col-sm-8">
                         <div class="mb-3">
                           <label class="col-sm-8 col-form-label">Apakah hal tersebut tercantum dalam MOA? </label>
                           <div class="form-check">
-                              <input class="form-check-input" type="radio" name="haktercantum" id="haktercantum" value="ya">
-                              <label class="form-check-label" for="haktercantum">
+                              <input class="form-check-input" type="radio" name="studimoa" id="studimoa" value="ya">
+                              <label class="form-check-label" for="studimoa">
                                 Ya
-                              </label>                            
+                              </label>
                             </div>
                             <!-- checked -->
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="haktercantum" id="haktercantum1" value="tidak">
-                              <label class="form-check-label" for="haktercantum1">
+                              <input class="form-check-input" type="radio" name="studimoa" id="studimoa1" value="tidak">
+                              <label class="form-check-label" for="studimoa1">
                                 Tidak
                               </label>
                             </div>
-                            @error('haktercantum')
+                            @error('studimoa')
                                 <span class="text-danger">{{ $message }}</span>
                             @endif
                         </div>
